@@ -7,9 +7,3 @@ Resources:
     Properties:
       Handler: main
       Runtime: go1.x
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: post
