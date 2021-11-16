@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    BUCKET: "sample-s3"
+    BUCKET: "sample-s3-artifact"
     REPO: "github.com/johnnycashash/aws-pipeline-test"
 
 phases:
