@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  variables:
+    BUCKET: "sample-s3"
+    REPO: "github.com/johnnycashash/aws-pipeline-test"
+
+phases:
+  install:
+    commands:
+      - mkdir -p "/go/src/$(dirname ${REPO})"
+      - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${REPO}"       
+      - env
+      - go get -u github.com/golang/lint/golint
+
+  pre_build: 
+    commands:
+      - cd "/go/src/${REPO}"
+      - go get -t ./...
+      - golint -set_exit_status
+      - go vet .
+      #- go test .
+
+  build:
+    commands:
+      - go build -o main
+      - aws cloudformation package --template-file template.yml --s3-bucket ${BUCKET} --output-template-file packaged.yml
+
+artifacts:
+  files:
+    - packaged.yml
