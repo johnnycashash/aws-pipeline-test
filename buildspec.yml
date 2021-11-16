@@ -24,8 +24,8 @@ phases:
   build:
     commands:
       - go build -o main
-      - aws cloudformation package --template-file template.yml --s3-bucket ${BUCKET} --output-template-file appspec.yml
+      - aws cloudformation package --template-file template.yml --s3-bucket ${BUCKET} --output-template-file appspec.yaml
 
 artifacts:
   files:
-    - appspec.yml
+    - appspec.yaml
