@@ -17,7 +17,7 @@ phases:
     commands:
       - cd "/go/src/${REPO}"
       - go get -t ./...
-      - golint -set_exit_status
+      #- golint -set_exit_status
       - go vet .
       #- go test .
 
